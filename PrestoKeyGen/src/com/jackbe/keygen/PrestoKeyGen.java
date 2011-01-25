@@ -72,7 +72,6 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 		}
 	}
 
-
 	private JMenuItem helpMenuItem;
 	private LookAndFeelMenu jMenu8;
 	private JMenu jMenu5;
