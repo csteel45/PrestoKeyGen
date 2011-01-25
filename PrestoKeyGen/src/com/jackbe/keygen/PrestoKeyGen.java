@@ -62,6 +62,8 @@ import javax.swing.event.MenuKeyEvent;
 */
 public class PrestoKeyGen extends javax.swing.JFrame {
 
+	private static final long serialVersionUID = 1L;
+
 	{
 		//Set Look & Feel
 		try {
@@ -80,9 +82,6 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 	private JRadioButton jRadioButton1;
 	private ButtonGroup buttonGroup3;
 	private JPanel jPanel1;
-	private ButtonGroup buttonGroup;
-	private ButtonGroup buttonGroup2;
-	private ButtonGroup buttonGroup1;
 	private JMenuItem deleteMenuItem;
 	private JSeparator jSeparator1;
 	private JMenuItem pasteMenuItem;
@@ -90,9 +89,6 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 	private JMenuItem cutMenuItem;
 	private JMenu jMenu4;
 	private JMenuItem exitMenuItem;
-	private JSeparator jSeparator2;
-	private JMenuItem saveAsMenuItem;
-	private JMenuItem saveMenuItem;
 	private JTextField jTextField4;
 	private JLabel jLabel5;
 	private JTextField jTextField3;
@@ -108,7 +104,6 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 	private JPanel jPanel6;
 	private JLabel jLabel1;
 	private JPanel titelPanel;
-	private JSeparator jSeparator3;
 	private JButton jButton2;
 	private JButton jButton1;
 	private JPanel jPanel5;
@@ -116,8 +111,6 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 	private JPanel jPanel4;
 	private JPanel jPanel3;
 	private JPanel jPanel2;
-	private JMenuItem openFileMenuItem;
-	private JMenuItem newFileMenuItem;
 	private JLabel jLabel14;
 	private JComboBox jComboBox8;
 	private JPanel jPanel19;
@@ -183,7 +176,6 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 				this.setTitle("Presto Key Generator");
 				this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("keygenlogo.gif")).getImage());
 				this.setMinimumSize(new java.awt.Dimension(640, 520));
-				this.setDefaultLookAndFeelDecorated(true);
 				this.addWindowListener(new WindowAdapter() {
 					public void windowClosing(WindowEvent evt) {
 						//System.out.println("this.windowClosing, event="+evt);
@@ -477,9 +469,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 						license.setOptions("sharepoint=false,sharepointcount=0");
 					}
 					//System.out.println("Options = " + license.getOptions());
-					DEcrypter decrypter = new DEcrypter();
-					String licenseKey = decrypter.encode(license);
-					LicenseInfo info = decrypter.decode(licenseKey);
+					String licenseKey = DEcrypter.encode(license);
 					//System.out.println(info);
 					license.setKey(licenseKey);
 					jTextArea1.setText(licenseKey);
@@ -548,20 +538,6 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jLabel1.setPreferredSize(new java.awt.Dimension(300, 40));
 		}
 		return jLabel1;
-	}
-
-	private void thisWindowClosed(WindowEvent evt) {
-		//System.out.println("this.windowClosed, event="+evt);
-		exit();
-	}
-
-	private void exit() {
-		System.exit(0);
-	}
-	
-	private void exitMenuItemMenuKeyPressed(MenuKeyEvent evt) {
-		//System.out.println("exitMenuItem.menuKeyPressed, event="+evt);
-		exit();
 	}
 	
 	private JPanel getJPanel6x() {
@@ -889,7 +865,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 				new DefaultComboBoxModel(days);
 			jComboBox3 = new JComboBox();
 			jComboBox3.setModel(jComboBox3Model);
-			jComboBox3.setSelectedIndex(expDate.getDate());
+			jComboBox3.setSelectedIndex(0);
 			jComboBox3.addItemListener(new ItemListener() {
 				public void itemStateChanged(ItemEvent evt) {
 					//System.out.println("jComboBox3.itemStateChanged, event="+evt);
@@ -921,6 +897,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 		return jLabel9;
 	}
 	
+	@SuppressWarnings("deprecation")
 	private JComboBox getJComboBox4() {
 		if(jComboBox4 == null) {
 			ComboBoxModel jComboBox4Model = 
@@ -947,6 +924,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 		return jLabel10;
 	}
 	
+	@SuppressWarnings("deprecation")
 	private JComboBox getJComboBox5() {
 		if(jComboBox5 == null) {
 			String[] years = new String[20];
