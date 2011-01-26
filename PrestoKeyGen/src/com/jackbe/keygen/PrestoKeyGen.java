@@ -1061,7 +1061,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 		if(jLabel11 == null) {
 			jLabel11 = new JLabel();
 			jLabel11.setText("User limit");
-			jLabel11.setPreferredSize(new java.awt.Dimension(125, 14));
+			jLabel11.setPreferredSize(new java.awt.Dimension(104, 14));
 		}
 		return jLabel11;
 	}
@@ -1083,7 +1083,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 		if(jLabel12 == null) {
 			jLabel12 = new JLabel();
 			jLabel12.setText("Anonymous User Limit");
-			jLabel12.setPreferredSize(new java.awt.Dimension(125, 20));
+			//jLabel12.setPreferredSize(new java.awt.Dimension(125, 20));
 		}
 		return jLabel12;
 	}
