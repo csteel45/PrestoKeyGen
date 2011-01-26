@@ -1,4 +1,5 @@
 package com.jackbe.keygen;
+import info.clearthought.layout.TableLayout;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -119,7 +120,6 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 	private JTextField jTextField1;
 	private JComboBox jComboBox7;
 	private JLabel jLabel12;
-	private JPanel jPanel17;
 	private JLabel jLabel11;
 	private JComboBox jComboBox6;
 	private JPanel jPanel16;
@@ -400,7 +400,6 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jPanel1.add(getJPanel7());
 			jPanel1.add(getJPanel12());
 			jPanel1.add(getJPanel16());
-			jPanel1.add(getJPanel17());
 			getButtonGroup3();
 
 		}
@@ -1033,11 +1032,14 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 	private JPanel getJPanel16() {
 		if(jPanel16 == null) {
 			jPanel16 = new JPanel();
-			FlowLayout jPanel16Layout = new FlowLayout();
-			jPanel16Layout.setAlignment(FlowLayout.LEFT);
+			TableLayout jPanel16Layout = new TableLayout(new double[][] {{TableLayout.FILL, 70.0, TableLayout.FILL}, {25.0, 25.0}});
+			jPanel16Layout.setHGap(5);
+			jPanel16Layout.setVGap(5);
 			jPanel16.setLayout(jPanel16Layout);
-			jPanel16.add(getJLabel11());
-			jPanel16.add(getJComboBox6());
+			jPanel16.add(getJLabel11(), "0, 0");
+			jPanel16.add(getJComboBox6(), "1, 0");
+			jPanel16.add(getJLabel12(), "0,1");
+			jPanel16.add(getJComboBox7(), "1,1");
 		}
 		return jPanel16;
 	}
@@ -1065,20 +1067,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 		}
 		return jLabel11;
 	}
-	
-	private JPanel getJPanel17() {
-		if(jPanel17 == null) {
-			jPanel17 = new JPanel();
-			FlowLayout jPanel17Layout = new FlowLayout();
-			jPanel17Layout.setAlignment(FlowLayout.LEFT);
-			jPanel17.setLayout(jPanel17Layout);
-			jPanel17.setToolTipText("Choose an existing value or type one in.");
-			jPanel17.add(getJLabel12());
-			jPanel17.add(getJComboBox7());
-		}
-		return jPanel17;
-	}
-	
+
 	private JLabel getJLabel12() {
 		if(jLabel12 == null) {
 			jLabel12 = new JLabel();
