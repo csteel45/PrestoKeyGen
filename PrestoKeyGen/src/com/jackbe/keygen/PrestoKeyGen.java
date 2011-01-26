@@ -19,6 +19,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -44,6 +45,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 
@@ -66,8 +68,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 	{
 		//Set Look & Feel
 		try {
-			//javax.swing.UIManager.setLookAndFeel("com.birosoft.liquid.LiquidLookAndFeel");
-			javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			javax.swing.UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -142,16 +143,23 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 	private JMenuBar jMenuBar1;
 	private Date expDate;
 	private JFrame frame;
-	private boolean updateDaysChanged;
+	private boolean updateDaysChanged = true;
 	/**
 	* Auto-generated main method to display this JFrame
 	*/
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				PrestoKeyGen inst = new PrestoKeyGen();
-				inst.setLocationRelativeTo(null);
-				inst.setVisible(true);
+				try {
+					PrestoKeyGen inst = new PrestoKeyGen();
+					inst.setLocationRelativeTo(null);
+					inst.setVisible(true);
+				}
+				catch(Exception e) {
+					System.err.println("Exception in main: " + e);
+					e.printStackTrace();
+					System.exit(-1);
+				}
 			}
 		});
 	}
@@ -173,8 +181,13 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 
 				//this.setSize(730, 500);
 				this.setTitle("Presto Key Generator");
-				this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("keygenlogo.gif")).getImage());
-				this.setMinimumSize(new java.awt.Dimension(640, 520));
+				URL imageURL = getClass().getClassLoader().getResource("images/keygenlogo.gif");
+				if(imageURL != null) {
+					ImageIcon icon = new ImageIcon(imageURL);
+					if(icon != null)
+						this.setIconImage(icon.getImage());
+				}
+				this.setMinimumSize(new java.awt.Dimension(700, 520));
 				this.addWindowListener(new WindowAdapter() {
 					public void windowClosing(WindowEvent evt) {
 						//System.out.println("this.windowClosing, event="+evt);
@@ -307,7 +320,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 							public void actionPerformed(ActionEvent evt) {
 								//System.out.println("helpMenuItem.actionPerformed, event="+evt);
 								AboutDialog dialog = new AboutDialog(frame, "Presto Key Generator", "Christopher Steel", "1.0", "01/24/2011", "\u00a9 Copyright JackBe 2011", "beta");
-								dialog.setImage("jackbelogo.gif");
+								dialog.setImage("images/jackbelogo.gif");
 								dialog.setVisible(true);
 							}
 						});
@@ -353,7 +366,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jPanel2 = new JPanel();
 			BorderLayout jPanel2Layout = new BorderLayout();
 			jPanel2.setLayout(jPanel2Layout);
-			jPanel2.setMinimumSize(new java.awt.Dimension(500, 500));
+			jPanel2.setMinimumSize(new java.awt.Dimension(700, 500));
 			jPanel2.setOpaque(false);
 			jPanel2.add(getJPanel6(), BorderLayout.NORTH);
 			jPanel2.add(getJPanel3(), BorderLayout.CENTER);
@@ -378,7 +391,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jPanel3.add(getJPanel6x());
 			jPanel3.add(jPanel1);
 			jPanel1.setAlignmentX(0.0f);
-			jPanel1.setMinimumSize(new java.awt.Dimension(280, 230));
+			jPanel1.setPreferredSize(new java.awt.Dimension(300, 250));
 			jPanel1.add(getJPanel9());
 			jPanel1.add(getJPanel7());
 			jPanel1.add(getJPanel12());
@@ -511,7 +524,14 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 		if(titelPanel == null) {
 			titelPanel = new JPanel();
 			JButton iconButton = new JButton();
-			iconButton.setIcon(new ImageIcon(getClass().getClassLoader().getResource("jackbelogo.gif")));
+			URL imageURL = getClass().getClassLoader().getResource("images/jackbelogo.gif");
+			if(imageURL != null) {
+				ImageIcon icon = new ImageIcon(imageURL);
+				if(icon != null) {
+					iconButton.setIcon(icon);
+					iconButton.setDisabledIcon(icon);
+				}
+			}
 			BorderLayout titelPanelLayout = new BorderLayout();
 			titelPanel.setLayout(titelPanelLayout);
 			titelPanel.setName("titlePanel");
@@ -522,7 +542,6 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			//iconButton.setOpaque(false);
 			iconButton.setBorderPainted(false);
 			iconButton.setEnabled(false);
-			iconButton.setDisabledIcon(new ImageIcon(getClass().getClassLoader().getResource("jackbelogo.gif")));
 			titelPanel.add(getJPanel13(), BorderLayout.CENTER);
 		}
 		return titelPanel;
@@ -549,7 +568,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jPanel6Layout.setRows(5);
 			jPanel6.setLayout(jPanel6Layout);
 			jPanel6.setOpaque(false);
-			jPanel6.setMinimumSize(new java.awt.Dimension(300, 230));
+			jPanel6.setPreferredSize(new java.awt.Dimension(360, 250));
 			jPanel6.add(getJPanel11());
 			jPanel6.add(getJPanel10());
 			jPanel6.add(getJPanel18());
@@ -699,7 +718,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 	private JTextField getJTextField3() {
 		if(jTextField3 == null) {
 			jTextField3 = new JTextField();
-			jTextField3.setPreferredSize(new java.awt.Dimension(190, 20));
+			jTextField3.setPreferredSize(new java.awt.Dimension(220, 25));
 			jTextField3.addFocusListener(new FocusAdapter() {
 				public void focusLost(FocusEvent evt) {
 					//System.out.println("jTextField3 Lost focused");
@@ -727,7 +746,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 	private JTextField getJTextField4() {
 		if(jTextField4 == null) {
 			jTextField4 = new JTextField();
-			jTextField4.setPreferredSize(new java.awt.Dimension(190, 20));
+			jTextField4.setPreferredSize(new java.awt.Dimension(220, 25));
 			jTextField4.addFocusListener(new FocusAdapter() {
 				public void focusLost(FocusEvent evt) {
 					//System.out.println("jTextField4.focusLost, event="+evt);
@@ -760,7 +779,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 		if(jLabel6 == null) {
 			jLabel6 = new JLabel();
 			jLabel6.setText("SharePoint");
-			jLabel6.setPreferredSize(new java.awt.Dimension(65, 20));
+			jLabel6.setPreferredSize(new java.awt.Dimension(70, 20));
 		}
 		return jLabel6;
 	}
@@ -783,7 +802,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jComboBox1.setSelectedIndex(3);
 			jComboBox1.setEditable(true);
 			jComboBox1.setEnabled(false);
-			jComboBox1.setPreferredSize(new java.awt.Dimension(55, 20));
+			jComboBox1.setPreferredSize(new java.awt.Dimension(55, 25));
 		}
 		return jComboBox1;
 	}
@@ -816,7 +835,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jComboBox2.setSelectedIndex(2);
 			jComboBox2.setToolTipText("Presto version number");
 			jComboBox2.setEditable(true);
-			jComboBox2.setPreferredSize(new java.awt.Dimension(55, 20));
+			jComboBox2.setPreferredSize(new java.awt.Dimension(55, 25));
 			jComboBox2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					//System.out.println("jComboBox2.actionPerformed, event="+evt);
@@ -854,6 +873,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 		return jLabel8;
 	}
 	
+	@SuppressWarnings("deprecation")
 	private JComboBox getJComboBox3() {
 		if(jComboBox3 == null) {
 			String[] days = new String[31];
@@ -864,7 +884,9 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 				new DefaultComboBoxModel(days);
 			jComboBox3 = new JComboBox();
 			jComboBox3.setModel(jComboBox3Model);
-			jComboBox3.setSelectedIndex(0);
+			jComboBox3.setPreferredSize(new java.awt.Dimension(68, 25));
+			jComboBox3.setOpaque(false);
+			jComboBox3.setSelectedIndex(expDate.getDate());
 			jComboBox3.addItemListener(new ItemListener() {
 				public void itemStateChanged(ItemEvent evt) {
 					//System.out.println("jComboBox3.itemStateChanged, event="+evt);
@@ -904,6 +926,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 						new String[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" });
 			jComboBox4 = new JComboBox();
 			jComboBox4.setModel(jComboBox4Model);
+			jComboBox4.setPreferredSize(new java.awt.Dimension(75, 25));
 			jComboBox4.addItemListener(new ItemListener() {
 				public void itemStateChanged(ItemEvent evt) {
 					//System.out.println("jComboBox4.itemStateChanged, event="+evt);
@@ -936,7 +959,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 				new DefaultComboBoxModel(years);
 			jComboBox5 = new JComboBox();
 			jComboBox5.setModel(jComboBox5Model);
-			jComboBox5.setPreferredSize(new java.awt.Dimension(70, 20));
+			jComboBox5.setPreferredSize(new java.awt.Dimension(90, 25));
 			String selectedYear = Integer.toString((1900 + expDate.getYear()));
 			jComboBox5.setSelectedItem(selectedYear);
 			jComboBox5.addItemListener(new ItemListener() {
@@ -1022,7 +1045,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jComboBox6.setModel(jComboBox6Model);
 			jComboBox6.setEditable(true);
 			jComboBox6.setToolTipText("Choose an existing value or type one in.");
-			jComboBox6.setPreferredSize(new java.awt.Dimension(85, 20));
+			jComboBox6.setPreferredSize(new java.awt.Dimension(85, 25));
 			jComboBox6.setSelectedIndex(1);
 		}
 		return jComboBox6;
@@ -1068,7 +1091,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jComboBox7.setModel(jComboBox7Model);
 			jComboBox7.setEditable(true);
 			jComboBox7.setToolTipText("Choose an existing value or type one in.");
-			jComboBox7.setPreferredSize(new java.awt.Dimension(85, 20));
+			jComboBox7.setPreferredSize(new java.awt.Dimension(85, 25));
 			jComboBox7.setOpaque(false);
 		}
 		return jComboBox7;
@@ -1078,7 +1101,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 		if(jTextField1 == null) {
 			jTextField1 = new JTextField();
 			jTextField1.setText("xxxx");
-			jTextField1.setPreferredSize(new java.awt.Dimension(190, 20));
+			jTextField1.setPreferredSize(new java.awt.Dimension(220, 25));
 			jTextField1.setToolTipText("Hostname of the box running Presto");
 		}
 		return jTextField1;

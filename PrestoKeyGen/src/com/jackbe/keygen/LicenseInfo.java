@@ -39,9 +39,9 @@ public class LicenseInfo {
 	
 	boolean status = false;
 	
-	private static HashMap mappings;
+	private static HashMap<String, String> mappings;
 	static {
-		mappings = new HashMap();
+		mappings = new HashMap<String, String>();
 		mappings.put("PMP", "Presto Mashup Platform"); // product name
 
 		// 

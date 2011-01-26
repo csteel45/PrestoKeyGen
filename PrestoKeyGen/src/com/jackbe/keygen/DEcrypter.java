@@ -62,7 +62,7 @@ public class DEcrypter {
 		String pw = key.substring(key.length() - 7);
 		//UnROT password ONLY
 		pw = DEcrypter.rot13(pw);
-		System.out.println("Real unROTted password = " + pw);
+		//System.out.println("Real unROTted password = " + pw);
 
 		// System.out.println(pw);
 		// System.out.println("-----> " +
@@ -72,7 +72,7 @@ public class DEcrypter {
 
 		//Decrypt key with unROTted password
 		String decryptedKey = DEcrypter.decrypt(key.substring(0, key.length() - 7), pw);
-		System.out.println("decrypted key = " + decryptedKey);
+		//System.out.println("decrypted key = " + decryptedKey);
 
 		LicenseInfo info = new LicenseInfo();
 		info.setKey(key);
@@ -105,6 +105,8 @@ public class DEcrypter {
 			try {
 			    InetAddress addr = InetAddress.getLocalHost();
 			    byte[] ipAddr = addr.getAddress();
+			    if(ipAddr.length < 4)
+			    	System.out.println("Invalid address");
 			    key.setHostname(addr.getHostName());
 			} catch (UnknownHostException e) {
 				key.setHostname("xxxx");
@@ -114,7 +116,7 @@ public class DEcrypter {
 			key.setHostname("xxxx");
 		}
 		String tokenizedKey = key.toString();
-		System.out.println("tokenized key = " + tokenizedKey);
+		//System.out.println("tokenized key = " + tokenizedKey);
 		String encodedKey = encrypt(tokenizedKey, PASSWORD);
 		encodedKey = encodedKey + rot13(PASSWORD);
 		//assert(encodedKey.equals());

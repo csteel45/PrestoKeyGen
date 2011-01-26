@@ -28,6 +28,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.plaf.metal.MetalLookAndFeel;
+import javax.swing.plaf.metal.OceanTheme;
 
 /**
  * Provides a menu item for setting the Look and Feel.
@@ -37,13 +39,16 @@ import javax.swing.UIManager;
  */
 public class LookAndFeelMenu extends JMenu {
 	private static final long serialVersionUID = 1L;
+	final static String THEME = "Ocean";
 	JFrame frame;
+	
 	JMenuItem aquaItem = new JMenuItem("Liquid");
 	JMenuItem windowsItem = new JMenuItem("Windows");
 	JMenuItem motifItem = new JMenuItem("Motif");
 	JMenuItem metalItem = new JMenuItem("Metal");
 	JMenuItem nimbusItem = new JMenuItem("Nimbus");
 	JMenuItem systemItem = new JMenuItem("System");
+	JMenuItem xplafItem = new JMenuItem("Quaqua");
 
 	public LookAndFeelMenu() {
 		this(null, "Look and Feel");
@@ -64,6 +69,8 @@ public class LookAndFeelMenu extends JMenu {
 		nimbusItem.setMnemonic('N');
 		systemItem.setName("System");
 		systemItem.setMnemonic('S');
+		xplafItem.setName("Quaqua");
+		xplafItem.setMnemonic('Q');
 		this.setMnemonic('L');
 		this.add(aquaItem);
 		this.add(windowsItem);
@@ -71,6 +78,9 @@ public class LookAndFeelMenu extends JMenu {
 		this.add(metalItem);
 		this.add(nimbusItem);
 		this.add(systemItem);
+		this.add(xplafItem);
+
+		MetalLookAndFeel.setCurrentTheme(new OceanTheme());
 
 		if(this.frame != null)
 			setActionHandlers();
@@ -110,6 +120,11 @@ public class LookAndFeelMenu extends JMenu {
 				setLookAndFeel(UIManager.getSystemLookAndFeelClassName(), frame);
 			}
 		});
+		xplafItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setLookAndFeel("ch.randelshofer.quaqua.snow_leopard.Quaqua16SnowLeopardLookAndFeel", frame);
+			}
+		});
 	}
 
 	public JFrame getFrame() {
@@ -121,10 +136,11 @@ public class LookAndFeelMenu extends JMenu {
 		setActionHandlers();
 	}
 
-	private static void setLookAndFeel(String lookAndFeelClass, Component c) {
+	private void setLookAndFeel(String lookAndFeelClass, Component c) {
 		try {
 			UIManager.setLookAndFeel(lookAndFeelClass);
 			SwingUtilities.updateComponentTreeUI(c);
+			frame.pack();
 		}
 		catch (Exception e) {
 			System.out
