@@ -1071,7 +1071,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 		if(jLabel12 == null) {
 			jLabel12 = new JLabel();
 			jLabel12.setText("Anonymous User Limit");
-			jLabel12.setPreferredSize(new java.awt.Dimension(130, 0));
+			jLabel12.setPreferredSize(new java.awt.Dimension(150, 0));
 		}
 		return jLabel12;
 	}
