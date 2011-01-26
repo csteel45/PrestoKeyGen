@@ -187,7 +187,6 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 					if(icon != null)
 						this.setIconImage(icon.getImage());
 				}
-				this.setMinimumSize(new java.awt.Dimension(700, 520));
 				this.addWindowListener(new WindowAdapter() {
 					public void windowClosing(WindowEvent evt) {
 						//System.out.println("this.windowClosing, event="+evt);
@@ -367,7 +366,6 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jPanel2 = new JPanel();
 			BorderLayout jPanel2Layout = new BorderLayout();
 			jPanel2.setLayout(jPanel2Layout);
-			jPanel2.setMinimumSize(new java.awt.Dimension(700, 500));
 			jPanel2.setOpaque(false);
 			jPanel2.add(getJPanel6(), BorderLayout.NORTH);
 			jPanel2.add(getJPanel3(), BorderLayout.CENTER);
@@ -385,8 +383,6 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jPanel3Layout.setVgap(5);
 			jPanel3.setLayout(jPanel3Layout);
 			jPanel3.setOpaque(false);
-			jPanel3.setMinimumSize(new java.awt.Dimension(684, 460));
-			jPanel3.setMaximumSize(new java.awt.Dimension(700, 600));
 			{
 				jPanel1 = new JPanel();
 				BoxLayout jPanel1Layout = new BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS);
@@ -395,7 +391,6 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jPanel3.add(getJPanel6x());
 			jPanel3.add(jPanel1);
 			jPanel1.setAlignmentX(0.0f);
-			jPanel1.setPreferredSize(new java.awt.Dimension(300, 250));
 			jPanel1.add(getJPanel9());
 			jPanel1.add(getJPanel7());
 			jPanel1.add(getJPanel12());
@@ -413,7 +408,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jPanel4.setLayout(jPanel4Layout);
 			jPanel4.add(getJPanel5(), BorderLayout.NORTH);
 			jPanel4.add(getJScrollPane1(), BorderLayout.CENTER);
-			jPanel4.setPreferredSize(new java.awt.Dimension(500, 150));
+			jPanel4.setPreferredSize(new java.awt.Dimension(300, 150));
 		}
 		return jPanel4;
 	}
