@@ -3,7 +3,10 @@ import info.clearthought.layout.TableLayout;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.ClipboardOwner;
@@ -30,10 +33,12 @@ import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -45,6 +50,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.LayoutStyle;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
@@ -167,6 +173,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 	public PrestoKeyGen() {
 		super();
 		frame = this;
+		this.setMinimumSize(new java.awt.Dimension(720, 500));
 		initGUI();
 		this.pack();
 	}
@@ -377,10 +384,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 	private JPanel getJPanel3() {
 		if(jPanel3 == null) {
 			jPanel3 = new JPanel();
-			GridLayout jPanel3Layout = new GridLayout(1, 2);
-			jPanel3Layout.setColumns(2);
-			jPanel3Layout.setHgap(5);
-			jPanel3Layout.setVgap(5);
+			BorderLayout jPanel3Layout = new BorderLayout();
 			jPanel3.setLayout(jPanel3Layout);
 			jPanel3.setOpaque(false);
 			{
@@ -388,9 +392,10 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 				BoxLayout jPanel1Layout = new BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS);
 				jPanel1.setLayout(jPanel1Layout);
 			}
-			jPanel3.add(getJPanel6x());
-			jPanel3.add(jPanel1);
+			jPanel3.add(getJPanel6x(), BorderLayout.WEST);
+			jPanel3.add(jPanel1, BorderLayout.EAST);
 			jPanel1.setAlignmentX(0.0f);
+			jPanel1.setPreferredSize(new java.awt.Dimension(348, 276));
 			jPanel1.add(getJPanel9());
 			jPanel1.add(getJPanel7());
 			jPanel1.add(getJPanel12());
@@ -408,7 +413,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jPanel4.setLayout(jPanel4Layout);
 			jPanel4.add(getJPanel5(), BorderLayout.NORTH);
 			jPanel4.add(getJScrollPane1(), BorderLayout.CENTER);
-			jPanel4.setPreferredSize(new java.awt.Dimension(300, 150));
+			jPanel4.setPreferredSize(new java.awt.Dimension(-1, 150));
 		}
 		return jPanel4;
 	}
@@ -534,7 +539,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			BorderLayout titelPanelLayout = new BorderLayout();
 			titelPanel.setLayout(titelPanelLayout);
 			titelPanel.setName("titlePanel");
-			titelPanel.setPreferredSize(new java.awt.Dimension(400, 50));
+			//titelPanel.setPreferredSize(new java.awt.Dimension(400, 50));
 			//titelPanel.setSize(780, 50);
 			titelPanel.add(iconButton, BorderLayout.WEST);
 			iconButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -562,12 +567,12 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jPanel6 = new JPanel();
 			GridLayout jPanel6Layout = new GridLayout(5, 1);
 			jPanel6Layout.setColumns(1);
-			jPanel6Layout.setHgap(5);
+			jPanel6Layout.setHgap(25);
 			jPanel6Layout.setVgap(14);
 			jPanel6Layout.setRows(5);
 			jPanel6.setLayout(jPanel6Layout);
 			jPanel6.setOpaque(false);
-			jPanel6.setPreferredSize(new java.awt.Dimension(360, 250));
+			//jPanel6.setPreferredSize(new java.awt.Dimension(360, 250));
 			jPanel6.add(getJPanel11());
 			jPanel6.add(getJPanel10());
 			jPanel6.add(getJPanel18());
@@ -696,6 +701,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jPanel12 = new JPanel();
 			FlowLayout jPanel12Layout = new FlowLayout();
 			jPanel12Layout.setAlignment(FlowLayout.LEFT);
+			jPanel12Layout.setAlignOnBaseline(true);
 			jPanel12.setLayout(jPanel12Layout);
 			jPanel12.add(getJLabel6());
 			jPanel12.add(getJCheckBox1());
