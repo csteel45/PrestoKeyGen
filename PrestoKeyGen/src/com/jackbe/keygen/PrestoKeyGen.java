@@ -51,6 +51,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
@@ -173,7 +174,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 	public PrestoKeyGen() {
 		super();
 		frame = this;
-		this.setMinimumSize(new java.awt.Dimension(720, 500));
+		this.setMinimumSize(new java.awt.Dimension(720, 480));
 		initGUI();
 		this.pack();
 	}
@@ -556,8 +557,9 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jLabel1 = new JLabel();
 			jLabel1.setText("Presto Key Generator");
 			jLabel1.setForeground(new java.awt.Color(255,0,0));
-			jLabel1.setFont(new java.awt.Font("Vani",3,24));
-			jLabel1.setPreferredSize(new java.awt.Dimension(300, 40));
+			jLabel1.setFont(new java.awt.Font("Space Bd BT",3,28));
+			jLabel1.setPreferredSize(new java.awt.Dimension(400, 40));
+			jLabel1.setHorizontalAlignment(SwingConstants.CENTER);
 		}
 		return jLabel1;
 	}
@@ -614,8 +616,9 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 	private JLabel getJLabel2() {
 		if(jLabel2 == null) {
 			jLabel2 = new JLabel();
-			jLabel2.setText("Expiration: ");
-			jLabel2.setPreferredSize(new java.awt.Dimension(80, 34));
+			jLabel2.setText("Expiration");
+			jLabel2.setPreferredSize(new java.awt.Dimension(70, 34));
+			jLabel2.setHorizontalAlignment(SwingConstants.RIGHT);
 		}
 		return jLabel2;
 	}
@@ -716,6 +719,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jLabel4 = new JLabel();
 			jLabel4.setText("Name");
 			jLabel4.setPreferredSize(new java.awt.Dimension(70, 20));
+			jLabel4.setHorizontalAlignment(SwingConstants.RIGHT);
 		}
 		return jLabel4;
 	}
@@ -744,6 +748,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jLabel5 = new JLabel();
 			jLabel5.setText("Email");
 			jLabel5.setPreferredSize(new java.awt.Dimension(70, 20));
+			jLabel5.setHorizontalAlignment(SwingConstants.RIGHT);
 		}
 		return jLabel5;
 	}
@@ -1119,6 +1124,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jLabel13 = new JLabel();
 			jLabel13.setText("Hostname");
 			jLabel13.setPreferredSize(new java.awt.Dimension(70, 20));
+			jLabel13.setHorizontalAlignment(SwingConstants.RIGHT);
 		}
 		return jLabel13;
 	}
