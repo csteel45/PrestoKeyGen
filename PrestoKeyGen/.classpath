@@ -6,6 +6,7 @@
 	<classpathentry kind="lib" path="lib/commons-codec-1.4.jar"/>
 	<classpathentry kind="lib" path="lib/looks-2.1.4.jar"/>
 	<classpathentry kind="lib" path="lib/TableLayout.jar"/>
-	<classpathentry kind="lib" path="images"/>
+	<classpathentry kind="lib" path="lib/quaqua.jar"/>
+	<classpathentry kind="lib" path="lib/swing-layout.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
