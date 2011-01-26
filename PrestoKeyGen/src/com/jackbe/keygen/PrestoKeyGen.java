@@ -715,7 +715,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 		if(jLabel4 == null) {
 			jLabel4 = new JLabel();
 			jLabel4.setText("Name");
-			jLabel4.setPreferredSize(new java.awt.Dimension(48, 20));
+			jLabel4.setPreferredSize(new java.awt.Dimension(50, 20));
 		}
 		return jLabel4;
 	}
@@ -743,7 +743,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 		if(jLabel5 == null) {
 			jLabel5 = new JLabel();
 			jLabel5.setText("Email");
-			jLabel5.setPreferredSize(new java.awt.Dimension(48, 20));
+			jLabel5.setPreferredSize(new java.awt.Dimension(50, 20));
 		}
 		return jLabel5;
 	}
@@ -1118,6 +1118,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 		if(jLabel13 == null) {
 			jLabel13 = new JLabel();
 			jLabel13.setText("Hostname");
+			jLabel13.setPreferredSize(new java.awt.Dimension(50, 20));
 		}
 		return jLabel13;
 	}
