@@ -199,6 +199,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			{
 				jMenuBar1 = new JMenuBar();
 				setJMenuBar(jMenuBar1);
+				jMenuBar1.setOpaque(false);
 				{
 					jMenu3 = new JMenu();
 					jMenuBar1.add(jMenu3);
@@ -304,6 +305,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 					jMenu8.setText("Look and Feel");
 					jMenu8.setMnemonic(java.awt.event.KeyEvent.VK_L);
 					jMenuBar1.add(jMenu8);
+					jMenu8.setOpaque(true);
 				}
 				{
 					jMenuBar1.add(Box.createHorizontalGlue());
