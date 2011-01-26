@@ -379,7 +379,10 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 	private JPanel getJPanel3() {
 		if(jPanel3 == null) {
 			jPanel3 = new JPanel();
-			FlowLayout jPanel3Layout = new FlowLayout();
+			GridLayout jPanel3Layout = new GridLayout(1, 2);
+			jPanel3Layout.setColumns(2);
+			jPanel3Layout.setHgap(5);
+			jPanel3Layout.setVgap(5);
 			jPanel3.setLayout(jPanel3Layout);
 			jPanel3.setOpaque(false);
 			jPanel3.setMinimumSize(new java.awt.Dimension(684, 460));
