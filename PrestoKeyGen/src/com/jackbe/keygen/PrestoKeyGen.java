@@ -556,8 +556,8 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 		if(jLabel1 == null) {
 			jLabel1 = new JLabel();
 			jLabel1.setText("Presto Key Generator");
-			jLabel1.setForeground(new java.awt.Color(255,0,0));
-			jLabel1.setFont(new java.awt.Font("Space Bd BT",3,28));
+			jLabel1.setForeground(new java.awt.Color(242,0,0));
+			jLabel1.setFont(new java.awt.Font("Blade Runner Movie Font",0,28));
 			jLabel1.setPreferredSize(new java.awt.Dimension(400, 40));
 			jLabel1.setHorizontalAlignment(SwingConstants.CENTER);
 		}
