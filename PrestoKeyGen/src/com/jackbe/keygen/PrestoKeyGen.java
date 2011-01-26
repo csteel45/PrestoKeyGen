@@ -1034,7 +1034,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jPanel16 = new JPanel();
 			TableLayout jPanel16Layout = new TableLayout(new double[][] {{TableLayout.FILL, 70.0, TableLayout.FILL}, {25.0, 25.0}});
 			jPanel16Layout.setHGap(5);
-			jPanel16Layout.setVGap(5);
+			jPanel16Layout.setVGap(10);
 			jPanel16.setLayout(jPanel16Layout);
 			jPanel16.add(getJLabel11(), "0, 0");
 			jPanel16.add(getJComboBox6(), "1, 0");
@@ -1063,7 +1063,6 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 		if(jLabel11 == null) {
 			jLabel11 = new JLabel();
 			jLabel11.setText("User limit");
-			jLabel11.setPreferredSize(new java.awt.Dimension(104, 14));
 		}
 		return jLabel11;
 	}
@@ -1072,7 +1071,6 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 		if(jLabel12 == null) {
 			jLabel12 = new JLabel();
 			jLabel12.setText("Anonymous User Limit");
-			//jLabel12.setPreferredSize(new java.awt.Dimension(125, 20));
 		}
 		return jLabel12;
 	}
