@@ -80,7 +80,7 @@ public class LookAndFeelMenu extends JMenu {
 		this.add(systemItem);
 		this.add(xplafItem);
 		MetalLookAndFeel.setCurrentTheme(new OceanTheme());
-		if(!System.getProperty("os.name").equals("OSX"))
+		if(!System.getProperty("os.name").startsWith("Mac"))
 			xplafItem.setEnabled(false);
 		if(!System.getProperty("os.name").startsWith("Windows"))
 			windowsItem.setEnabled(false);

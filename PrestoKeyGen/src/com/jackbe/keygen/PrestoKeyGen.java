@@ -305,7 +305,6 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 					jMenu8.setText("Look and Feel");
 					jMenu8.setMnemonic(java.awt.event.KeyEvent.VK_L);
 					jMenuBar1.add(jMenu8);
-					jMenu8.setOpaque(true);
 				}
 				{
 					jMenuBar1.add(Box.createHorizontalGlue());
@@ -503,6 +502,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jButton2.setBackground(new java.awt.Color(147,185,255));
 			jButton2.setForeground(new java.awt.Color(0,0,255));
 			jButton2.setToolTipText("Validates an existing license, pasted in below.");
+			jButton2.setNextFocusableComponent(getJTextField4());
 			jButton2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					try {
@@ -863,6 +863,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jTextArea1.setLineWrap(true);
 			jTextArea1.setBackground(new java.awt.Color(0,0,0));
 			jTextArea1.setForeground(new java.awt.Color(255,186,117));
+			jTextArea1.setFocusTraversalKeysEnabled(false);
 		}
 		return jTextArea1;
 	}
