@@ -28,6 +28,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.plaf.metal.DefaultMetalTheme;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.metal.OceanTheme;
 
@@ -39,17 +40,22 @@ import javax.swing.plaf.metal.OceanTheme;
  */
 public class LookAndFeelMenu extends JMenu {
 	private static final long serialVersionUID = 1L;
-	final static String THEME = "Ocean";
+	final static String THEME = "Steel";
 	JFrame frame;
 	
 	JMenuItem aquaItem = new JMenuItem("Liquid");
 	JMenuItem windowsItem = new JMenuItem("Windows");
 	JMenuItem motifItem = new JMenuItem("Motif");
-	JMenuItem metalItem = new JMenuItem("Metal");
+	JMenuItem metalItem = new JMenuItem("Metal Default");
+	JMenuItem metalOceanItem = new JMenuItem("Metal Ocean");
 	JMenuItem nimbusItem = new JMenuItem("Nimbus");
 	JMenuItem systemItem = new JMenuItem("System");
-	JMenuItem xplafItem = new JMenuItem("Quaqua");
+	JMenuItem macItem = new JMenuItem("Quaqua");
 
+	static {
+		UIManager.put("swing.boldMetal", Boolean.FALSE);
+	}
+	
 	public LookAndFeelMenu() {
 		this(null, "Look and Feel");
 	}
@@ -57,31 +63,37 @@ public class LookAndFeelMenu extends JMenu {
 	public LookAndFeelMenu(JFrame parentFrame, String title) {
 		super(title);
 		this.frame = parentFrame;
+
 		aquaItem.setMnemonic('L');
 		aquaItem.setName("Liquid");
 		windowsItem.setMnemonic('W');
 		windowsItem.setName("Windows");
-		motifItem.setName("Motif");
-		motifItem.setMnemonic('O');
+		motifItem.setName("Motif X");
+		motifItem.setMnemonic('X');
 		metalItem.setName("Metal");
 		metalItem.setMnemonic('M');
+		metalOceanItem.setName("Metal Ocean");
+		metalOceanItem.setMnemonic('O');
 		nimbusItem.setName("Nimbus");
 		nimbusItem.setMnemonic('N');
 		systemItem.setName("System");
 		systemItem.setMnemonic('S');
-		xplafItem.setName("Quaqua");
-		xplafItem.setMnemonic('Q');
+		macItem.setName("Quaqua");
+		macItem.setMnemonic('Q');
+
 		this.setMnemonic('L');
+
 		this.add(aquaItem);
 		this.add(windowsItem);
 		this.add(motifItem);
 		this.add(metalItem);
+		this.add(metalOceanItem);
 		this.add(nimbusItem);
 		this.add(systemItem);
-		this.add(xplafItem);
-		MetalLookAndFeel.setCurrentTheme(new OceanTheme());
+		this.add(macItem);
+
 		if(!System.getProperty("os.name").startsWith("Mac"))
-			xplafItem.setEnabled(false);
+			macItem.setEnabled(false);
 		if(!System.getProperty("os.name").startsWith("Windows"))
 			windowsItem.setEnabled(false);
 
@@ -95,13 +107,12 @@ public class LookAndFeelMenu extends JMenu {
 				setLookAndFeel("com.birosoft.liquid.LiquidLookAndFeel", frame);
 			}
 		});
-		windowsItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setLookAndFeel(
-						"com.sun.java.swing.plaf.windows.WindowsLookAndFeel",
-						frame);
-			}
-		});
+		if (System.getProperty("os.name").startsWith("Windows"))
+			windowsItem.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel", frame);
+				}
+			});
 		motifItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setLookAndFeel(
@@ -110,6 +121,13 @@ public class LookAndFeelMenu extends JMenu {
 		});
 		metalItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				MetalLookAndFeel.setCurrentTheme(new DefaultMetalTheme());
+				setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel", frame);
+			}
+		});
+		metalOceanItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MetalLookAndFeel.setCurrentTheme(new OceanTheme());
 				setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel", frame);
 			}
 		});
@@ -123,13 +141,12 @@ public class LookAndFeelMenu extends JMenu {
 				setLookAndFeel(UIManager.getSystemLookAndFeelClassName(), frame);
 			}
 		});
-		xplafItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Properties: " + System.getProperties().toString());
-				if(System.getProperty("os.name").equals("OSX"))
+		if(System.getProperty("os.name").startsWith("Mac"))
+			macItem.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
 					setLookAndFeel("ch.randelshofer.quaqua.snow_leopard.Quaqua16SnowLeopardLookAndFeel", frame);
-			}
-		});
+				}
+			});
 	}
 
 	public JFrame getFrame() {
