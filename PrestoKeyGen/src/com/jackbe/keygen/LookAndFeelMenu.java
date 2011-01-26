@@ -79,8 +79,11 @@ public class LookAndFeelMenu extends JMenu {
 		this.add(nimbusItem);
 		this.add(systemItem);
 		this.add(xplafItem);
-
 		MetalLookAndFeel.setCurrentTheme(new OceanTheme());
+		if(!System.getProperty("os.name").equals("OSX"))
+			xplafItem.setEnabled(false);
+		if(!System.getProperty("os.name").startsWith("Windows"))
+			windowsItem.setEnabled(false);
 
 		if(this.frame != null)
 			setActionHandlers();
@@ -122,7 +125,9 @@ public class LookAndFeelMenu extends JMenu {
 		});
 		xplafItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setLookAndFeel("ch.randelshofer.quaqua.snow_leopard.Quaqua16SnowLeopardLookAndFeel", frame);
+				System.out.println("Properties: " + System.getProperties().toString());
+				if(System.getProperty("os.name").equals("OSX"))
+					setLookAndFeel("ch.randelshofer.quaqua.snow_leopard.Quaqua16SnowLeopardLookAndFeel", frame);
 			}
 		});
 	}
