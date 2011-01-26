@@ -1033,7 +1033,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 	private JPanel getJPanel16() {
 		if(jPanel16 == null) {
 			jPanel16 = new JPanel();
-			TableLayout jPanel16Layout = new TableLayout(new double[][] {{TableLayout.FILL, 70.0, TableLayout.FILL}, {25.0, 25.0}});
+			TableLayout jPanel16Layout = new TableLayout(new double[][] {{150.0, 70.0, TableLayout.FILL}, {25.0, 25.0}});
 			jPanel16Layout.setHGap(5);
 			jPanel16Layout.setVGap(10);
 			jPanel16.setLayout(jPanel16Layout);
