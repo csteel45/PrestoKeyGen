@@ -54,6 +54,9 @@ import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.TitledBorder;
 
 
@@ -375,6 +378,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			BorderLayout jPanel2Layout = new BorderLayout();
 			jPanel2.setLayout(jPanel2Layout);
 			jPanel2.setOpaque(false);
+			jPanel2.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 			jPanel2.add(getJPanel6(), BorderLayout.NORTH);
 			jPanel2.add(getJPanel3(), BorderLayout.CENTER);
 			jPanel2.add(getJPanel4(), BorderLayout.SOUTH);
@@ -411,6 +415,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 		if(jPanel4 == null) {
 			jPanel4 = new JPanel();
 			BorderLayout jPanel4Layout = new BorderLayout();
+			jPanel4Layout.setVgap(5);
 			jPanel4.setLayout(jPanel4Layout);
 			jPanel4.add(getJPanel5(), BorderLayout.NORTH);
 			jPanel4.add(getJScrollPane1(), BorderLayout.CENTER);
@@ -422,6 +427,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 	private JScrollPane getJScrollPane1() {
 		if(jScrollPane1 == null) {
 			jScrollPane1 = new JScrollPane();
+			jScrollPane1.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 			jScrollPane1.setViewportView(getJTextArea1());
 		}
 		return jScrollPane1;
@@ -432,8 +438,8 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jPanel5 = new JPanel();
 			GridLayout jPanel5Layout = new GridLayout(1, 4);
 			jPanel5Layout.setColumns(4);
-			jPanel5Layout.setHgap(5);
-			jPanel5Layout.setVgap(5);
+			jPanel5Layout.setHgap(25);
+			jPanel5Layout.setVgap(25);
 			jPanel5.setLayout(jPanel5Layout);
 			jPanel5.add(getJPanel14());
 			jPanel5.add(getJButton1());
@@ -447,9 +453,9 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 		if(jButton1 == null) {
 			jButton1 = new JButton();
 			jButton1.setText("Generate");
-			jButton1.setForeground(new java.awt.Color(0,193,97));
+			jButton1.setForeground(new java.awt.Color(0,128,0));
 			jButton1.setToolTipText("Generates the license key");
-			jButton1.setBackground(new java.awt.Color(0,255,64));
+			jButton1.setBackground(new java.awt.Color(128,255,128));
 			jButton1.setEnabled(false);
 			jButton1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
@@ -558,8 +564,10 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jLabel1.setText("Presto Key Generator");
 			jLabel1.setForeground(new java.awt.Color(242,0,0));
 			jLabel1.setFont(new java.awt.Font("Blade Runner Movie Font",0,28));
-			jLabel1.setPreferredSize(new java.awt.Dimension(400, 40));
+			jLabel1.setPreferredSize(new java.awt.Dimension(410, 40));
 			jLabel1.setHorizontalAlignment(SwingConstants.CENTER);
+			jLabel1.setOpaque(true);
+			jLabel1.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
 		}
 		return jLabel1;
 	}
@@ -650,6 +658,8 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 				jRadioButton1.setLayout(jRadioButton2Layout);
 				jRadioButton1.setText(LicenseInfo.getMappedValue("D"));
 				jRadioButton1.setForeground(new java.awt.Color(240,120,0));
+				jRadioButton1.setOpaque(false);
+				jRadioButton1.setFont(new java.awt.Font("Tahoma",1,11));
 			}
 			{
 				jRadioButton3 = new JRadioButton();
@@ -659,6 +669,8 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 				jRadioButton3.setLayout(jRadioButton3Layout);
 				jRadioButton3.setText(LicenseInfo.getMappedValue("W"));
 				jRadioButton3.setForeground(new java.awt.Color(240,120,0));
+				jRadioButton3.setOpaque(false);
+				jRadioButton3.setFont(new java.awt.Font("Tahoma",1,11));
 			}
 			{
 				jRadioButton2 = new JRadioButton();
@@ -668,6 +680,8 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 				jRadioButton2.setLayout(jRadioButton2Layout);
 				jRadioButton2.setText(LicenseInfo.getMappedValue("E"));
 				jRadioButton2.setForeground(new java.awt.Color(240,120,0));
+				jRadioButton2.setOpaque(false);
+				jRadioButton2.setFont(new java.awt.Font("Tahoma",1,11));
 			}
 		}
 		return jPanel9;
@@ -728,6 +742,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 		if(jTextField3 == null) {
 			jTextField3 = new JTextField();
 			jTextField3.setPreferredSize(new java.awt.Dimension(220, 25));
+			jTextField3.setForeground(new java.awt.Color(0,0,255));
 			jTextField3.addFocusListener(new FocusAdapter() {
 				public void focusLost(FocusEvent evt) {
 					//System.out.println("jTextField3 Lost focused");
@@ -757,6 +772,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 		if(jTextField4 == null) {
 			jTextField4 = new JTextField();
 			jTextField4.setPreferredSize(new java.awt.Dimension(220, 25));
+			jTextField4.setForeground(new java.awt.Color(0,0,255));
 			jTextField4.addFocusListener(new FocusAdapter() {
 				public void focusLost(FocusEvent evt) {
 					//System.out.println("jTextField4.focusLost, event="+evt);
@@ -869,8 +885,8 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jTextArea1 = new JTextArea();
 			jTextArea1.setText("NBkfEAl5OCMUCBU6PSo0Gg8cVDQkOi8uEQg+OHciGRwfOxUHPD0nPgl4eUAzSEhufmFDXklMbnxhSDNKTGcVLwkVASQkIzYDCAkVPiUjTBkLDzJnJBkMCx8nJD4fGRoVIiUjTF9MJGcVZw==JdzlmJX");
 			jTextArea1.setLineWrap(true);
-			jTextArea1.setBackground(new java.awt.Color(0,0,0));
-			jTextArea1.setForeground(new java.awt.Color(255,186,117));
+			jTextArea1.setBackground(new java.awt.Color(45,45,45));
+			jTextArea1.setForeground(new java.awt.Color(255,128,0));
 			jTextArea1.setFocusTraversalKeysEnabled(false);
 		}
 		return jTextArea1;
@@ -1103,6 +1119,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jTextField1.setText("xxxx");
 			jTextField1.setPreferredSize(new java.awt.Dimension(220, 25));
 			jTextField1.setToolTipText("Hostname of the box running Presto");
+			jTextField1.setForeground(new java.awt.Color(0,0,255));
 		}
 		return jTextField1;
 	}
