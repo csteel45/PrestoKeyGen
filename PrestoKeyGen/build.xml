@@ -95,6 +95,9 @@
         	<arg value="org" />
         	<arg value="-C" />
         	<arg value="${classes}" />
+        	<arg value="info" />
+        	<arg value="-C" />
+        	<arg value="${classes}" />
         	<arg value="ch" />
         	<arg value="-C" />
         	<arg value="${classes}" />
