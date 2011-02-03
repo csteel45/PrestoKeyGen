@@ -21,6 +21,7 @@ public class NodeTreeDemo implements NodeTree {
 	}
 	
 	public Node getNode() {
+		Node node = null;
 		treeDepth++;
 		if(random.nextBoolean() && treeDepth < treeDepthLimit) {
 			//node is a FunctionNode
@@ -31,7 +32,7 @@ public class NodeTreeDemo implements NodeTree {
 			//node is a ConstantNode
 		}
 		treeDepth--;
-		return Node;
+		return node;
 	}
 	
 	public static void main(String[] args) {
