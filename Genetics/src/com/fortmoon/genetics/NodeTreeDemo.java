@@ -25,8 +25,7 @@ public class NodeTreeDemo implements NodeTree {
 		treeDepth++;
 		if(random.nextBoolean() && treeDepth < treeDepthLimit) {
 			//node is a FunctionNode
-			Operand operand = operandList.get(random.nextInt(operandList.size()));
-			
+			Operand operand = operandList.get(random.nextInt(operandList.size()));		
 		}
 		else {
 			//node is a ConstantNode
