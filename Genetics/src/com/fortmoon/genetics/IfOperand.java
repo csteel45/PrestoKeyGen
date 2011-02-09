@@ -1,5 +1,6 @@
 package com.fortmoon.genetics;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 /**
@@ -9,26 +10,26 @@ import java.util.ArrayList;
  */
 public class IfOperand implements Operand{
 
-		public Float evaluate(ArrayList<Node> args) {
-				if(args.get(0).evaluate() > 0) {
+		public <T extends Node> Number evaluate(ArrayList<T> args) {
+				if(args.get(0).evaluate().doubleValue() > 0) {
 					return args.get(1).evaluate();
 				}
 				else {
 					return args.get(2).evaluate();
 				}
 		}
+		
+		public String toString() {
+			return "if";
+		}
 
 		/* (non-Javadoc)
 		 * @see com.fortmoon.genetics.Node#evaluate()
 		 */
 		@Override
-		public Float evaluate() {
+		public Number evaluate() {
 			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		public String toString() {
-			return "if";
+			return new Integer(0);
 		}
 
 }

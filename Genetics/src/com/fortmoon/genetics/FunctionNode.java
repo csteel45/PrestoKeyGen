@@ -11,17 +11,26 @@ public abstract class FunctionNode implements Node {
 	protected Operand operand;
 	protected ArrayList<Node> paramList;
 	
-	public FunctionNode(Operand operand, ArrayList<Node> paramList) {
+	public <T extends Node> FunctionNode(Operand operand, ArrayList<T> paramList2) {
 		this.operand = operand;
-		this.paramList = paramList;
+		this.paramList = (ArrayList<Node>) paramList2;
 	}
 	
-	public Float evaluate() {
+	public Number evaluate() {
 		return operand.evaluate(paramList);
 	}
 	
 	public String toString() {
+		StringBuffer buf = new StringBuffer();
 		return operand.toString() + "(" + paramList.toString() + ")";
+	}
+
+	/**
+	 * @param args
+	 * @return
+	 */
+	public  <T extends Node> Number evaluate(ArrayList<T> args) {
+		return operand.evaluate(paramList);
 	}
 	
 }

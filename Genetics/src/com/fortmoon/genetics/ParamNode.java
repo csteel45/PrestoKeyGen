@@ -1,32 +1,42 @@
 package com.fortmoon.genetics;
 
+import java.util.ArrayList;
+
 /**
  * @author Christopher Steel - FortMoon Consulting, Inc.
  *
  * @since Jan 29, 2011 2:23:35 AM
  */
 public class ParamNode implements Node {
-	protected Object param;
+	protected int paramNumber;
 
-	public ParamNode(Object param) {
-		this.param = param;
+	protected ParamNode() {
+		
+	}
+	
+	public ParamNode(int param) {
+		this.paramNumber = param;
 	}
 
-	public Object getParam() {
-		return param;
+	public Number getParam() {
+		return paramNumber;
 	}
 
-	public void setParam(Object param) {
-		this.param = param;
+	public void setParam(int param) {
+		this.paramNumber = param;
 	}
 
 	/* (non-Javadoc)
-	 * @see com.fortmoon.genetics.Node#evaluate()
+	 * @see com.fortmoon.genetics.Node#evaluate(java.util.ArrayList)
 	 */
 	@Override
-	public Float evaluate() {
-		// TODO Auto-generated method stub
-		return null;
+	public <T extends Node> Number evaluate(ArrayList<T> args) {
+		return args.get(paramNumber).evaluate(args);
 	}
+	
+	public String toString() {
+		return "IN:" + paramNumber;
+	}
+
 
 }

@@ -6,5 +6,5 @@ package com.fortmoon.genetics;
  * @since Jan 29, 2011 2:20:56 AM
  */
 public interface NodeTree {
-	public Node buildTree();
+	public Node buildTree(int arg1, int arg2);
 }
