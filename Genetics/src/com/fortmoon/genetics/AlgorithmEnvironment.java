@@ -3,6 +3,8 @@
  */
 package com.fortmoon.genetics;
 
+import java.util.Random;
+
 /**
  * @author csteel
  *

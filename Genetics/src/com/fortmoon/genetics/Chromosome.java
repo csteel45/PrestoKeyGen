@@ -46,20 +46,6 @@ public class Chromosome implements Comparable {
 		return genes;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 */
-	@Override
-	public int compareTo(Object o) {
-		if (o instanceof Chromosome) {
-			Chromosome c = (Chromosome) o;
-			return (this.fitness < c.fitness ? -1 : (this.fitness == c.fitness ? 0 : 1));
-		}
-		return 0;
-	}
-
 	/**
 	 * @param i
 	 * @param j
@@ -90,6 +76,20 @@ public class Chromosome implements Comparable {
 		this.fitness = fitness;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	@Override
+	public int compareTo(Object o) {
+		if (o instanceof Chromosome) {
+			Chromosome c = (Chromosome) o;
+			return (this.fitness < c.fitness ? -1 : (this.fitness == c.fitness ? 0 : 1));
+		}
+		return 0;
+	}
+	
 	public String toString() {
 		StringBuffer buf = new StringBuffer();
 		buf.append("\n\tUUID: " + uuid);

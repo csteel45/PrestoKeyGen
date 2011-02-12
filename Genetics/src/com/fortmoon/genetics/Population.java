@@ -25,7 +25,7 @@ public class Population {
 		for(int i = 0; i < 8; i++) {
 			int x = random.nextInt(50);
 			int y = random.nextInt(50);
-			int result = x*x + 2*y + 3*x + 5;
+			int result = x*x + 2*y + 3*x + y*y;
 			testData[i][0] = x;
 			testData[i][1] = y;
 			testData[i][2] = result;			
@@ -43,7 +43,9 @@ public class Population {
 		if(chromosomes.size() < numChromosomes) {
 			int diff = numChromosomes - chromosomes.size();
 			for(int i = 0; i < diff; i++) {
-				Chromosome c = new Chromosome(4, 0);
+				
+				//Start with 1 gene per Chromosome and grow
+				Chromosome c = new Chromosome(1, 0);
 				c.setFitness(Integer.MAX_VALUE);
 				chromosomes.add(c);
 			}
@@ -66,7 +68,10 @@ public class Population {
 			int geneIndex = random.nextInt(c.getGenes().size());
 			Gene gene = c.getGenes().get(geneIndex);
 			Chromosome target = chromosomes.get(i+1);
-			target.getGenes().set(geneIndex, gene);
+			if(target.getGenes().size() < geneIndex+1)
+				target.getGenes().add(gene);
+			else
+				target.getGenes().set(geneIndex, gene);
 			c = chromosomes.get(i);
 		}
 	}
@@ -74,6 +79,9 @@ public class Population {
 	public void doMutations() {
 		for(int i = 0; i < 6; i++) {
 			Chromosome c = chromosomes.get(3 + random.nextInt(chromosomes.size()-3));
+			if(random.nextInt(10000) > 9998) {
+				c.getGenes().add(new Gene());
+			}
 			c.mutate();
 		}
 	}
