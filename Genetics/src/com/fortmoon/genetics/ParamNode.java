@@ -35,6 +35,10 @@ public class ParamNode implements Node {
 	}
 	
 	public String toString() {
+		if(paramNumber == 0)
+			return "x";
+		if(paramNumber == 1)
+			return "y";
 		return "IN:" + paramNumber;
 	}
 

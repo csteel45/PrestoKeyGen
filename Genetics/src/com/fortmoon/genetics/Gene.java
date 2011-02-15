@@ -3,8 +3,6 @@
  */
 package com.fortmoon.genetics;
 
-import java.util.ArrayList;
-
 /**
  * @author csteel
  *

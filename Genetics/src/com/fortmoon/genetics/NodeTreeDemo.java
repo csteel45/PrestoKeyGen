@@ -19,8 +19,10 @@ public class NodeTreeDemo implements NodeTree {
 	static {
 		// operandList.add(new IfOperand());
 		operandList.add(new MathOperand(Operation.PLUS));
+		operandList.add(new MathOperand(Operation.MINUS));
 		operandList.add(new MathOperand(Operation.TIMES));
-		// operandList.add(new MathOperand(Operation.POWER));
+		//operandList.add(new MathOperand(Operation.DIVIDE));
+		//operandList.add(new MathOperand(Operation.POWER));
 	}
 
 	public NodeTreeDemo() {
@@ -67,7 +69,7 @@ public class NodeTreeDemo implements NodeTree {
 			Operand operand = operandList.get(random.nextInt(operandList.size()));
 			ArrayList<Node> params = new ArrayList<Node>();
 			int rand = 5;
-			int lastRand = 5;
+			//int lastRand = 5;
 			for (int i = 0; i < 2; i++) {
 				rand = random.nextInt(4);
 				// if(rand == 3 && lastRand == 0)

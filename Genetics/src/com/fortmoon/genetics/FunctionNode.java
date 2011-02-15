@@ -11,6 +11,7 @@ public abstract class FunctionNode implements Node {
 	protected Operand operand;
 	protected ArrayList<Node> paramList;
 	
+	@SuppressWarnings("unchecked")
 	public <T extends Node> FunctionNode(Operand operand, ArrayList<T> paramList2) {
 		this.operand = operand;
 		this.paramList = (ArrayList<Node>) paramList2;
@@ -21,7 +22,6 @@ public abstract class FunctionNode implements Node {
 	}
 	
 	public String toString() {
-		StringBuffer buf = new StringBuffer();
 		return operand.toString() + "(" + paramList.toString() + ")";
 	}
 

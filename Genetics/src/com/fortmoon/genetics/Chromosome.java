@@ -1,15 +1,15 @@
 package com.fortmoon.genetics;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 import java.util.UUID;
 
-public class Chromosome implements Comparable {
+public class Chromosome implements Comparable<Object> {
 	private ArrayList<Gene> genes;
-	private int fitness;
+	private BigDecimal fitness;
 	private UUID uuid;
-	private ArrayList<ParamNode> inputs;
 	private Random random = new Random(System.currentTimeMillis()+20000);
 
 	private Chromosome() {
@@ -47,19 +47,21 @@ public class Chromosome implements Comparable {
 	}
 
 	/**
-	 * @param i
-	 * @param j
+	 * @param x
+	 * @param y
 	 * @return
 	 */
-	public int evaluate(int i, int j) {
+	public BigDecimal evaluate(BigDecimal x, BigDecimal y) {
 		ArrayList<Node> inputs = new ArrayList<Node>();
-		inputs.add(new ConstNode(i));
-		inputs.add(new ConstNode(j));
-		int result = 0;
+		inputs.add(new ConstNode(x));
+		inputs.add(new ConstNode(y));
+		BigDecimal result = BigDecimal.valueOf(0);
 		//System.out.println("--------------------------------");
 		for(Gene gene : genes) {
-			result += gene.node.evaluate(inputs).intValue();
-			//System.out.println("Gene " + gene + " Result for " + i + " " + j + " = " + result);
+			BigDecimal eval = BigDecimal.valueOf(gene.node.evaluate(inputs).longValue());
+			//System.out.println("Eval: " + eval);
+			result = result.add(eval);
+			//System.out.println("Gene " + gene + " Result for " + x + " " + y + " = " + result);
 		}
 		return result;
 	}
@@ -67,13 +69,13 @@ public class Chromosome implements Comparable {
 	/**
 	 * @return
 	 */
-	private int getFitness() {
+	private BigDecimal getFitness() {
 		// TODO Auto-generated method stub
 		return fitness;
 	}
 
-	public void setFitness(int fitness) {
-		this.fitness = fitness;
+	public void setFitness(BigDecimal fitness2) {
+		this.fitness = fitness2;
 	}
 
 	/*
@@ -85,7 +87,7 @@ public class Chromosome implements Comparable {
 	public int compareTo(Object o) {
 		if (o instanceof Chromosome) {
 			Chromosome c = (Chromosome) o;
-			return (this.fitness < c.fitness ? -1 : (this.fitness == c.fitness ? 0 : 1));
+			return (getFitness().compareTo(c.fitness));
 		}
 		return 0;
 	}
@@ -100,12 +102,11 @@ public class Chromosome implements Comparable {
 		return buf.toString();
 	}
 
-	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		ArrayList<Chromosome> list = new ArrayList<Chromosome>();
 		for (int i = 0; i < 48; i++) {
 			Chromosome c = new Chromosome(4, 0);
-			c.setFitness(5000);
+			c.setFitness(BigDecimal.valueOf(5000));
 			list.add(c);
 		}
 		// System.out.println("Unsorted list: " + list);
