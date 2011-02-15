@@ -56,6 +56,7 @@ public class AlgorithmEnvironment extends Thread implements Environment {
 		long generation = 0;
 		while(calculateFitness().compareTo(ZERO) > 0 && generation < Integer.MAX_VALUE) {
 			population.doCrossovers();
+			population.sort();
 			population.doMutations();
 			if(generation % 1000 == 1) {
 				System.out.println("Fittest = " + population.getFittest().toString());

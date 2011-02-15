@@ -55,16 +55,16 @@ public class Population {
 
 	public void doCrossovers() {
 		Chromosome c = chromosomes.get(0);
-		for(int i = 1; i < chromosomes.size() - 1; i++) {
+		for(int i = 0; i < chromosomes.size()-1; i++) {
 			// For a random number of genes
 				// Grab some random genes
 			int geneIndex = random.nextInt(c.getGenes().size());
 			Gene gene = c.getGenes().get(geneIndex);
 			Chromosome target = chromosomes.get(i+1);
-			if(target.getGenes().size() < geneIndex+1)
-				target.getGenes().add(gene);
-			else
+			if(target.getGenes().size() >= geneIndex+1)
 				target.getGenes().set(geneIndex, gene);
+			else
+				target.getGenes().add(gene);
 			c = chromosomes.get(i);
 		}
 	}
@@ -74,17 +74,16 @@ public class Population {
 		int numMutations = (int)(chromosomes.size() * mutationRate);
 		//System.out.println("Num mutations = " + numMutations);
 		for(int i = 0; i < numMutations; i++) {
-			Chromosome c = chromosomes.get(random.nextInt(chromosomes.size()));
+			Chromosome c = chromosomes.get(random.nextInt(chromosomes.size()-3) + 3);
 			if(random.nextInt(100000) > 99998) {
 				System.out.println("Adding a gene.");
 				c.getGenes().add(new Gene());
 			}
-/*			if(random.nextInt(100000) > 99998) {
-				c = chromosomes.get(0);
+			if(random.nextInt(100000) > 99998) {
 				if(c.getGenes().size() > 1)
 					c.getGenes().remove(c.getGenes().size() - 1);
 			}
-*/			c.mutate();
+			c.mutate();
 		}
 	}
 
