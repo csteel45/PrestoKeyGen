@@ -21,12 +21,11 @@ public class AlgorithmEnvironment extends Thread implements Environment {
 	/**
 	 * @param args
 	 */
-	public AlgorithmEnvironment(int population) {
+	public AlgorithmEnvironment(int populationSize) {
 		super("Main");
-		this.population = new Population(population);
+		setPopulation(new Population(populationSize));
 	}
-	
-	
+		
 	public void init() {
 		Random random = new Random(System.currentTimeMillis());
 		Collection<ArrayList<BigDecimal>> testData = new ArrayList<ArrayList<BigDecimal>>(8);
@@ -74,6 +73,26 @@ public class AlgorithmEnvironment extends Thread implements Environment {
 		System.out.println("Fittest chromosome = " + population.getFittest().toString());
 	}
 	
+	public Population getPopulation() {
+		return population;
+	}
+
+
+	public void setPopulation(Population population) {
+		this.population = population;
+	}
+
+
+	public float getThreshold() {
+		return threshold;
+	}
+
+
+	public void setThreshold(float threshold) {
+		this.threshold = threshold;
+	}
+
+
 	public static void main(String args[]) {
 		AlgorithmEnvironment env = new AlgorithmEnvironment(48);
 		env.init();
