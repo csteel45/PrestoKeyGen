@@ -1,17 +1,17 @@
 /*
  * @(#)LookAndFeelMenu.java $Revision: 1.1 $ $Date: 2000/11/08 21:01:33 $
  * 
- * Copyright © 2007 TIBCO Software, Inc. All Rights Reserved.
+ * Copyright 2007 FortMoon Consulting, Inc. All Rights Reserved.
  * 
- * This software is the confidential and proprietary information of TIBCO
+ * This software is the confidential and proprietary information of FortMoon
  * Software, Inc. ("Confidential Information"). You shall not disclose such
  * Confidential Information and shall use it only in accordance with the terms
- * of the license agreement you entered into with TIBCO Software.
+ * of the license agreement you entered into with FortMoon Consulting.
  * 
- * TIBCO MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+ * FortMoon MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
  * SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
- * NON-INFRINGEMENT. TIBCO SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+ * NON-INFRINGEMENT. FortMoon SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
  * LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
  * DERIVATIVES.
  * 
@@ -35,7 +35,7 @@ import javax.swing.plaf.metal.OceanTheme;
 /**
  * Provides a menu item for setting the Look and Feel.
  * 
- * @author Christopher Steel, Principal Architect - TIBCO
+ * @author Christopher Steel, Principal Architect - FortMoon
  * @version Aug 24, 2007 3:02:58 PM
  */
 public class LookAndFeelMenu extends JMenu {
