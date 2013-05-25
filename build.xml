@@ -1,0 +1,156 @@
+<?xml version="1.0" standalone="yes"?>
+<project name="Presto Key Generator" basedir="." default="run">
+
+	<property name="src" value="src" />
+	<property name="classes" value="build/classes" />
+	<property name="lib" value="lib" />
+	<property name="images" value="images" />
+	<property name="docs" value="docs" />
+	<property name="javadocs" value="docs/api" />
+	<property name="reports" value="reports" />
+	<property name="backup.dir" value="backups" />
+	<property name="jarfile" value="prestokeygen" />
+	<property name="browser" value="C:/Program Files/Internet Explorer/iexplore.exe" />
+
+	<path id="classpath">
+		<pathelement path="${classes}" />
+		<pathelement path="libsrc" />
+		<pathelement path="${images}" />
+		<fileset dir="${lib}/" includes="*.jar" />
+	</path>
+
+	<path id="srcpath">
+		<pathelement path="${src}" />
+	</path>
+	
+	<target name="init" description="unjar libraries to classes folder">
+		<mkdir dir="${classes}" />
+		<unjar dest="${classes}">
+  			<fileset dir="${lib}" includes="*.jar" />
+		</unjar>
+	</target>
+
+	<!--compile Java source files-->
+	<target name="compile" description="Compile all Java source files">
+		<echo message="Compiling the java source files..." />
+		<javac destdir="${classes}" debug="on" includeantruntime="false">
+			<src refid="srcpath" />
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+	
+	<target name="jar" description="Create Presto Key Generator jar file" depends="compile" >
+	<!-- Don't use jar task. It screws up the ClassPath in the Manifest. -->
+        <exec executable="jar">
+        	<arg value="cfM" />
+        	<arg value="${jarfile}.jar" />
+        	<arg value="META-INF" />
+        	<arg value="${images}/*.gif" />
+        	<arg value="-C" />
+        	<arg value="${classes}" />
+        	<arg value="info" />
+        	<arg value="-C" />
+        	<arg value="${classes}" />
+        	<arg value="ch" />
+        	<arg value="-C" />
+        	<arg value="${classes}" />
+        	<arg value="org" />
+       		<arg value="-C" />
+        	<arg value="${classes}" />
+        	<arg value="com" />
+         	<arg value="-C" />
+        	<arg value="${lib}" />
+        	<arg value="libquaqua.jnilib" />
+        	<arg value="-C" />
+        	<arg value="${lib}" />
+        	<arg value="libquaqua64.jnilib" />
+        </exec>
+	</target>
+	
+	<target name="zip" description="Create a ZIP file for distribution" depends="jar, javadoc" >
+       <jar jarfile="${jarfile}.zip" basedir="." >
+           <include name="${jarfile}.jar"/>
+           <include name="${lib}/**"/>
+           <include name="${docs}/**"/>
+           <include name="${certs}/**"/>
+          <include name="${xml}/**"/>
+          <include name="${config}/**"/>
+       </jar> 
+	</target>
+
+
+	<target name="test" depends="compile" description="Run JUnit test cases.">
+		<delete dir="${reports}" />
+		<mkdir dir="${reports}" />
+
+		<junit printsummary="yes" fork="yes" haltonfailure="no" haltonerror="no" maxmemory="256m">
+		<jvmarg value="-Xms256m" />
+		<jvmarg value="-Xmx256m" />
+			<formatter type="${xml}" />
+			<classpath refid="classpath" />
+			<batchtest fork="yes" todir="${reports}">
+				<fileset dir="${src}">
+					<include name="**/*TestSuite.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+
+		<junitreport todir="${reports}">
+			<fileset dir="${reports}">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report format="frames" todir="${reports}/html" />
+		</junitreport>
+
+		<property name="browser" location="${browser}" />
+		<property name="file" location="${reports}/html/index.html" />
+
+		<exec executable="${browser}" spawn="true">
+			<arg value="${file}" />
+		</exec>
+	</target>
+
+	<target name="javadoc" description="Generates javadocs" depends="compile">
+		<echo message="Generating javadoc..." />
+		<mkdir dir="${javadocs}" />
+		<javadoc destdir="${javadocs}"            
+			author="true"
+           	version="true"
+           	use="true"
+			windowtitle="Presto Key Generator" 
+			useexternalfile="yes">
+			<fileset dir=".">
+				<include name="${src}/**/*.java" />
+			</fileset>
+			<classpath refid="classpath" />
+		</javadoc>
+	</target>
+
+    <!-- Does backup of src, etc, lib directories-->
+    <target name="backup" description="Adds lib and images dirs to backup file.">
+    <tstamp />
+		<mkdir dir="${backup.dir}" />
+        <jar jarfile="${backup.dir}/backup-${DSTAMP}-${TSTAMP}.jar"
+            basedir="."
+            update="false">
+            <include name="${src}/**"/>
+            <include name="${lib}/**"/>
+            <include name="${images}/**"/>
+            <include name="build.xml"/>
+        </jar>
+    </target>
+
+	<target name="run" description="Launch the application." depends="jar">
+        <java jar="${jarfile}.jar" fork="true" spawn="true" jvmargs="-Xms256M -Xmx256M -XX:MaxGCPauseMillis=1 -XX:YoungGenerationSizeIncrement=50"/>
+	</target>
+
+	<target name="clean" description="Deletes all the class and report artifacts.">
+		<delete dir="${javadocs}" />
+		<delete dir="${classes}" />
+		<delete dir="${reports}" />
+		<delete file="${jarfile}.jar" />
+		<delete file="${jarfile}.zip" />
+	</target>
+
+</project>
+
