@@ -17,7 +17,7 @@
  * 
  * Copyright Version 1.0
  */
-package com.jackbe.keygen;
+package com.jackbe.keygen; 
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
