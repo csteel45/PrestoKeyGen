@@ -5,10 +5,7 @@ import info.clearthought.layout.TableLayout;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.ClipboardOwner;
@@ -25,7 +22,9 @@ import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -35,12 +34,10 @@ import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -52,12 +49,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.TitledBorder;
 
@@ -189,7 +184,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			{
 				expDate = new Date(System.currentTimeMillis());
 				Calendar cal = Calendar.getInstance();
-				cal.add(Calendar.MONTH, 2);
+				cal.add(Calendar.YEAR, 3);
 				expDate = cal.getTime();
 
 				//this.setSize(730, 500);
@@ -369,7 +364,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 					//TODO add your code for jRadioButton3.actionPerformed
 				}
 			});
-			jRadioButton1.setSelected(true);
+			jRadioButton2.setSelected(true);
 		}
 		return buttonGroup3;
 	}
@@ -458,7 +453,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jButton1.setForeground(new java.awt.Color(0,128,0));
 			jButton1.setToolTipText("Generates the license key");
 			jButton1.setBackground(new java.awt.Color(128,255,128));
-			jButton1.setEnabled(false);
+			jButton1.setEnabled(true);
 			jButton1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					//System.out.println("jButton1.actionPerformed, event="+evt);
@@ -487,10 +482,10 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 					license.setUserLimit(Integer.parseInt((String)jComboBox6.getSelectedItem()));
 					license.setAnonLimit(Integer.parseInt((String)jComboBox7.getSelectedItem()));
 					if(jCheckBox1.isSelected()) {
-						license.setOptions("sharepoint=true,sharepointcount=" + (String)jComboBox1.getSelectedItem());
+						license.setOptions("mobile=true,sharepoint=true,sharepointcount=" + (String)jComboBox1.getSelectedItem());
 					}
 					else {
-						license.setOptions("sharepoint=false,sharepointcount=0");
+						license.setOptions("mobile=true,sharepoint=false,sharepointcount=0");
 					}
 					//System.out.println("Options = " + license.getOptions());
 					String licenseKey = DEcrypter.encode(license);
@@ -523,6 +518,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 						jTextArea1.setForeground(new java.awt.Color(255,186,117));
 					}
 					catch(Exception e) {
+						jTextArea1.setText(e.getMessage());
 						jTextArea1.setForeground(Color.black);
 						jTextArea1.setBackground(Color.red);
 					}
@@ -743,6 +739,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 	private JTextField getJTextField3() {
 		if(jTextField3 == null) {
 			jTextField3 = new JTextField();
+			jTextField3.setText("John Crupi");
 			jTextField3.setPreferredSize(new java.awt.Dimension(220, 25));
 			jTextField3.setForeground(new java.awt.Color(0,0,255));
 			jTextField3.addFocusListener(new FocusAdapter() {
@@ -773,6 +770,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 	private JTextField getJTextField4() {
 		if(jTextField4 == null) {
 			jTextField4 = new JTextField();
+			jTextField4.setText("john.crupi@jackbe.com");
 			jTextField4.setPreferredSize(new java.awt.Dimension(220, 25));
 			jTextField4.setForeground(new java.awt.Color(0,0,255));
 			jTextField4.addFocusListener(new FocusAdapter() {
@@ -829,7 +827,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jComboBox1.setModel(jComboBox1Model);
 			jComboBox1.setSelectedIndex(3);
 			jComboBox1.setEditable(true);
-			jComboBox1.setEnabled(false);
+			jComboBox1.setEnabled(true);
 			jComboBox1.setPreferredSize(new java.awt.Dimension(55, 25));
 		}
 		return jComboBox1;
@@ -838,6 +836,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 	private JCheckBox getJCheckBox1() {
 		if(jCheckBox1 == null) {
 			jCheckBox1 = new JCheckBox();
+			jCheckBox1.setSelected(true);
 			jCheckBox1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					//System.out.println("jCheckBox1.actionPerformed, event="+evt);
@@ -857,10 +856,10 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 		if(jComboBox2 == null) {
 			ComboBoxModel jComboBox2Model = 
 				new DefaultComboBoxModel(
-						new String[] { "2.7", "3.0", "3.1" });
+						new String[] { "2.7", "3.0", "3.1", "3.5" });
 			jComboBox2 = new JComboBox();
 			jComboBox2.setModel(jComboBox2Model);
-			jComboBox2.setSelectedIndex(2);
+			jComboBox2.setSelectedIndex(3);
 			jComboBox2.setToolTipText("Presto version number");
 			jComboBox2.setEditable(true);
 			jComboBox2.setPreferredSize(new java.awt.Dimension(55, 25));
@@ -885,7 +884,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 	private JTextArea getJTextArea1() {
 		if(jTextArea1 == null) {
 			jTextArea1 = new JTextArea();
-			jTextArea1.setText("NBkfEAl5OCMUCBU6PSo0Gg8cVDQkOi8uEQg+OHciGRwfOxUHPD0nPgl4eUAzSEhufmFDXklMbnxhSDNKTGcVLwkVASQkIzYDCAkVPiUjTBkLDzJnJBkMCx8nJD4fGRoVIiUjTF9MJGcVZw==JdzlmJX");
+			//jTextArea1.setText("NBkfEAl5OCMUCBU6PSo0Gg8cVDQkOi8uEQg+OHciGRwfOxUHPD0nPgl4eUAzSEhufmFDXklMbnxhSDNKTGcVLwkVASQkIzYDCAkVPiUjTBkLDzJnJBkMCx8nJD4fGRoVIiUjTF9MJGcVZw==JdzlmJX");
 			jTextArea1.setLineWrap(true);
 			jTextArea1.setBackground(new java.awt.Color(45,45,45));
 			jTextArea1.setForeground(new java.awt.Color(255,128,0));
@@ -1078,7 +1077,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 			jComboBox6.setEditable(true);
 			jComboBox6.setToolTipText("Choose an existing value or type one in.");
 			jComboBox6.setPreferredSize(new java.awt.Dimension(85, 25));
-			jComboBox6.setSelectedIndex(1);
+			jComboBox6.setSelectedIndex(0);
 		}
 		return jComboBox6;
 	}
@@ -1118,7 +1117,14 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 	private JTextField getJTextField1() {
 		if(jTextField1 == null) {
 			jTextField1 = new JTextField();
-			jTextField1.setText("xxxx");
+			
+			try {
+				jTextField1.setText(InetAddress.getLocalHost().getCanonicalHostName());
+			}
+			catch (UnknownHostException e) {
+				jTextField1.setText("localhost");
+				e.printStackTrace();
+			}
 			jTextField1.setPreferredSize(new java.awt.Dimension(220, 25));
 			jTextField1.setToolTipText("Hostname of the box running Presto");
 			jTextField1.setForeground(new java.awt.Color(0,0,255));
@@ -1168,7 +1174,7 @@ public class PrestoKeyGen extends javax.swing.JFrame {
 						new String[] { "30", "60", "90", "180", "365" });
 			jComboBox8 = new JComboBox();
 			jComboBox8.setModel(jComboBox8Model);
-			jComboBox8.setSelectedIndex(1);
+			jComboBox8.setSelectedIndex(4);
 			jComboBox8.setEditable(true);
 			jComboBox8.addItemListener(new ItemListener() {
 				public void itemStateChanged(ItemEvent evt) {

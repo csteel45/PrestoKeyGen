@@ -27,12 +27,13 @@ public class LicenseInfo {
 	private String version; 
 	private String type; // P or T (Permanent or Temporary)
 	private String  months; 
-	private String email; 
-	private String name;
+	private String email = "john.crupi@jack.com"; 
+	private String name = "John Crupi";
+	private String mobileEnabled = "mobile=true";
 	private String key;
 	
-	// 3.0
-	private String options;
+	// 3.0+
+	private String options = "mobile=true";
 	private int userLimit;
 	private int anonLimit;
 	private String hostname;
@@ -181,6 +182,20 @@ public class LicenseInfo {
 		this.hostname = hostname;
 	}
 	
+	/**
+	 * @return the mobileEnabled
+	 */
+	public String getMobileEnabled() {
+		return mobileEnabled;
+	}
+
+	/**
+	 * @param mobileEnabled the mobileEnabled to set
+	 */
+	public void setMobileEnabled(String mobileEnabled) {
+		this.mobileEnabled = mobileEnabled;
+	}
+
 	public String toString() {
 		StringBuffer sb = new StringBuffer(128)
 		.append(email).append("^")
