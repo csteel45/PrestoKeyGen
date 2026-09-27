@@ -11,6 +11,9 @@
 	<property name="backup.dir" value="backups" />
 	<property name="jarfile" value="prestokeygen" />
 	<property name="browser" value="C:/Program Files/Internet Explorer/iexplore.exe" />
+	<property name="test.src" value="test" />
+	<property name="test.classes" value="build/testclasses" />
+	<property name="test.lib" value="lib/test" />
 
 	<path id="classpath">
 		<pathelement path="${classes}" />
@@ -22,7 +25,16 @@
 	<path id="srcpath">
 		<pathelement path="${src}" />
 	</path>
-	
+
+	<!-- Test-only classpath: main classpath plus the compiled test classes
+	     and JUnit itself. Kept separate from ${lib} so the JUnit jar is
+	     never unjar'd into ${classes} or bundled into the shipped jar. -->
+	<path id="testclasspath">
+		<path refid="classpath" />
+		<pathelement path="${test.classes}" />
+		<fileset dir="${test.lib}" includes="*.jar" />
+	</path>
+
 	<target name="init" description="unjar libraries to classes folder">
 		<mkdir dir="${classes}" />
 		<unjar dest="${classes}">
@@ -79,18 +91,26 @@
 	</target>
 
 
-	<target name="test" depends="compile" description="Run JUnit test cases.">
+	<target name="test-compile" depends="compile" description="Compile the JUnit test source files">
+		<mkdir dir="${test.classes}" />
+		<javac srcdir="${test.src}" destdir="${test.classes}" debug="on" includeantruntime="false">
+			<classpath refid="testclasspath" />
+		</javac>
+	</target>
+
+	<target name="test" depends="test-compile" description="Run JUnit test cases.">
 		<delete dir="${reports}" />
 		<mkdir dir="${reports}" />
 
-		<junit printsummary="yes" fork="yes" haltonfailure="no" haltonerror="no" maxmemory="256m">
+		<junit printsummary="yes" fork="yes" haltonfailure="no" haltonerror="no" maxmemory="256m"
+			failureproperty="tests.failed" errorproperty="tests.failed">
 		<jvmarg value="-Xms256m" />
 		<jvmarg value="-Xmx256m" />
-			<formatter type="${xml}" />
-			<classpath refid="classpath" />
+			<formatter type="xml" />
+			<classpath refid="testclasspath" />
 			<batchtest fork="yes" todir="${reports}">
-				<fileset dir="${src}">
-					<include name="**/*TestSuite.java" />
+				<fileset dir="${test.src}">
+					<include name="**/*Test.java" />
 				</fileset>
 			</batchtest>
 		</junit>
@@ -102,12 +122,7 @@
 			<report format="frames" todir="${reports}/html" />
 		</junitreport>
 
-		<property name="browser" location="${browser}" />
-		<property name="file" location="${reports}/html/index.html" />
-
-		<exec executable="${browser}" spawn="true">
-			<arg value="${file}" />
-		</exec>
+		<fail if="tests.failed" message="Unit tests failed. See ${reports}/html for details." />
 	</target>
 
 	<target name="javadoc" description="Generates javadocs" depends="compile">
@@ -147,6 +162,7 @@
 	<target name="clean" description="Deletes all the class and report artifacts.">
 		<delete dir="${javadocs}" />
 		<delete dir="${classes}" />
+		<delete dir="${test.classes}" />
 		<delete dir="${reports}" />
 		<delete file="${jarfile}.jar" />
 		<delete file="${jarfile}.zip" />
