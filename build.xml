@@ -43,7 +43,7 @@
 	</target>
 
 	<!--compile Java source files-->
-	<target name="compile" description="Compile all Java source files">
+	<target name="compile" depends="init" description="Compile all Java source files">
 		<echo message="Compiling the java source files..." />
 		<javac destdir="${classes}" debug="on" includeantruntime="false">
 			<src refid="srcpath" />
